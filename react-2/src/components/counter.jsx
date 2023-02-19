@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-class  extends Component {
-  state = {  }
+class Counter extends Component {
+
   render() {
     return ();
   }
 }
 
-export default ;
+export default Counter ;
