@@ -43,7 +43,7 @@ class Movies extends Component {
 
   render() {
     if (this.state.newMovies.length === 0)
-      return <p> There are no Movies in the database!</p>;
+      return <p className="m-3"> There are no Movies in the database!</p>;
 
     return (
       <React.Fragment>
