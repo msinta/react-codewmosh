@@ -6,7 +6,7 @@ import {saveMovie} from './services/fakeMovieService'
 class Movies extends Component {
   state = {
     movies: getMovies(),
-    saveMovies: saveMovie
+    saveMovies: saveMovie()
   };
 
   render() {
