@@ -4,15 +4,23 @@ import {saveMovie} from '../services/fakeMovieService';
 
 class Movies extends Component {
   state = {
-    movies: getMovies(),
-    saveMovies: saveMovie()
+    newMovies: getMovies(),
+    oldMovies: saveMovie,
   };
 
   handleDelete(){
 
   }
+
+
   render() {
-    return <h1>hello world</h1>;
+    return (
+    <div>
+    <h1>Hello World</h1>
+    <ul>{this.state.newMovies.map(movie => <li>{movie.title}</li> )}
+    </ul>
+    </div>
+    );
   }
 }
 
