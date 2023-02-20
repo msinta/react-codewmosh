@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import {getMovies} from './services/fakeMovieService'
-import {saveMovie} from './services/fakeMovieService'
-
+import React, { Component } from 'react';
+import {getMovies} from '../services/fakeMovieService';
+import {saveMovie} from '../services/fakeMovieService';
 
 class Movies extends Component {
   state = {
@@ -9,8 +8,11 @@ class Movies extends Component {
     saveMovies: saveMovie()
   };
 
+  handleDelete(){
+
+  }
   render() {
-    return ();
+    return <h1>hello world</h1>;
   }
 }
 
