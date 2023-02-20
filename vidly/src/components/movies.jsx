@@ -11,12 +11,7 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   };
 
-  handleTitle() {
-    const { newMovies } = this.state;
-    return newMovies.length === 0
-      ? "There are no Movies!"
-      : `There are ${newMovies.length} movies in the database`;
-  }
+
 
   handleTable() {
     return (
@@ -47,11 +42,14 @@ class Movies extends Component {
   }
 
   render() {
+    if (this.state.newMovies.length === 0)
+      return <p> There are no Movies in the database!</p>;
+
     return (
-      <div>
-        <h4 className="m-3">{this.handleTitle()}</h4>
+      <React.Fragment>
+        <h4>There are {this.state.newMovies.length} movies in the database</h4>
         <ul>{this.handleTable()}</ul>
-      </div>
+      </React.Fragment>
     );
   }
 }
