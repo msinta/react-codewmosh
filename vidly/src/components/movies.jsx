@@ -34,7 +34,7 @@ class Movies extends Component {
               <td>{movie.genre.name}</td>
               <td>{movie.numberInStock}</td>
               <td>{movie.dailyRentalRate}</td>
-              <td><LikeButton onClick={() => this.props.handleLike(movie)} /></td>
+              <td><LikeButton handleLike={movie}/></td>
               <button className="btn btn-danger btn-sm"
               onClick={() => this.handleDelete(movie)}>Delete</button>
             </tr>

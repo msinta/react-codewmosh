@@ -2,18 +2,16 @@ import React, { Component } from 'react'
 
 
 class LikeButton extends Component {
-  state = {  }
+  render() {
+    return (<button
+      onClick={() => this.handleLike(this.props.movie)}></button>);
 
-  handleLike = (movie) => {
-    if(movie === true){
-      <i class="fa fa-heart" aria-hidden="true"></i>
-    }
-    <i class="fa fa-heart-o" aria-hidden="true"></i>
+  }
+
+
+handleLike = (movie) => {
+    movie === true ? <i class="fa fa-heart" aria-hidden="true"></i> : <i class="fa fa-heart-o" aria-hidden="true"></i>
   };
 
-  render() {
-    return {handleLike()};
-  }
 }
-
 export default LikeButton;
