@@ -1,16 +1,30 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import LikeButton from './like'
+import LikeButton from "./like";
 
 class Movies extends Component {
   state = {
     newMovies: getMovies(),
   };
 
-  handleDelete = movie => {
-    const movies = this.state.newMovies.filter(m => m._id !== movie._id);
+  handleDelete = (movie) => {
+    const movies = this.state.newMovies.filter((m) => m._id !== movie._id);
     this.setState({ newMovies: movies });
   };
+
+
+  badgeName() {
+    let classes = ""
+    classes +=  classes === "fa fa-heart" ? "fa fa-heart-o" : "fa fa-heart" ;
+    return classes;
+  }
+
+  handleLike(){
+
+
+  }
+
+
 
 
 
@@ -28,15 +42,21 @@ class Movies extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.newMovies.map(movie => (
+          {this.state.newMovies.map((movie) => (
             <tr key={movie._id}>
               <td>{movie.title}</td>
               <td>{movie.genre.name}</td>
               <td>{movie.numberInStock}</td>
               <td>{movie.dailyRentalRate}</td>
-              <td><LikeButton handleLike={movie}/></td>
-              <button className="btn btn-danger btn-sm"
-              onClick={() => this.handleDelete(movie)}>Delete</button>
+              <td>
+              <i className={this.badgeName()} aria-hidden="true" onClick={()=>{console.log("clicked")}}></i>
+              </td>
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={() => this.handleDelete(movie)}
+              >
+                Delete
+              </button>
             </tr>
           ))}
         </tbody>

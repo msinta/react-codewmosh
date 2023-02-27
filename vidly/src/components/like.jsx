@@ -1,17 +1,21 @@
-import React, { Component } from 'react'
-
+import React, { Component } from "react";
 
 class LikeButton extends Component {
   render() {
-    return (<button
-      onClick={() => this.handleLike(this.props.movie)}></button>);
-
+    return (
+      <React.Fragment>
+      <i class="fa fa-heart" aria-hidden="true" onClick={this.handleLike()}></i>
+      <i className={this.handleLike()} aria-hidden="true"></i>
+      </React.Fragment>
+    );
   }
 
+  handleLike(movie) {
+    let classes = "fa"
+    classes += this.props.handleLike === {movie} ? "fa-heart" : "fa-heart-o";
+    return classes;
+  }
 
-handleLike = (movie) => {
-    movie === true ? <i class="fa fa-heart" aria-hidden="true"></i> : <i class="fa fa-heart-o" aria-hidden="true"></i>
-  };
 
 }
 export default LikeButton;
