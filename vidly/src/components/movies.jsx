@@ -5,6 +5,7 @@ import LikeButton from "./like";
 class Movies extends Component {
   state = {
     newMovies: getMovies(),
+    badgeName: "fa fa-heart-o"
   };
 
   handleDelete = (movie) => {
@@ -12,16 +13,10 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   };
 
-
-  badgeName() {
-    let classes = ""
-    classes +=  classes === "fa fa-heart" ? "fa fa-heart-o" : "fa fa-heart" ;
-    return classes;
-  }
-
   handleLike(){
-
-
+    let classes = "";
+    classes +=  this.state.badgeName === "fa fa-heart-o" ? "fa fa-heart" : "fa fa-heart-o" ;
+    this.setState({badgeName: classes})
   }
 
 
@@ -49,7 +44,7 @@ class Movies extends Component {
               <td>{movie.numberInStock}</td>
               <td>{movie.dailyRentalRate}</td>
               <td>
-              <i className={this.badgeName()} aria-hidden="true" onClick={()=>{console.log("clicked")}}></i>
+              <i className={this.state.badgeName} aria-hidden="true" onClick={()=>{this.handleLike()}}></i>
               </td>
               <button
                 className="btn btn-danger btn-sm"
