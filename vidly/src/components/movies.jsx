@@ -12,21 +12,13 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   };
 
-  handleBadge(movie){
-    let classes = ""
-    classes += movie.liked === true ? "fa fa-heart" : "fa fa-heart-o" ;
-    return classes
+  handleLike(movie) {
+    const movies = [...this.state.newMovies ];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movies[index] };
+    movies[index].liked = !movies[index].liked;
+    this.setState({ newMovies: movies });
   }
-
-  handleLike(movie){
-      let movies = [...this.state.newMovies]
-      const index = movies.indexOf(movie)
-      movies[index]= {...movies[index]}
-      movies[index].liked = !movies[index].liked
-      this.setState({ newMovies: movies });
-  }
-
-
 
   handleTable() {
     return (
@@ -49,7 +41,7 @@ class Movies extends Component {
               <td>{movie.numberInStock}</td>
               <td>{movie.dailyRentalRate}</td>
               <td>
-              <i className={this.handleBadge(movie)} aria-hidden="true" onClick={()=>{this.handleLike(movie)}}></i>
+                <LikeButton liked={movie.liked} movie={movie} handleLike={this.handleLike} />
               </td>
               <button
                 className="btn btn-danger btn-sm"
