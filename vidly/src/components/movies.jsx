@@ -41,7 +41,7 @@ class Movies extends Component {
               <td>{movie.numberInStock}</td>
               <td>{movie.dailyRentalRate}</td>
               <td>
-                <LikeButton liked={movie.liked} movie={movie} handleLike={this.handleLike} />
+                <LikeButton liked={movie.liked} movie={movie} handleLike={ () => (this.handleLike(movie))} />
               </td>
               <button
                 className="btn btn-danger btn-sm"
