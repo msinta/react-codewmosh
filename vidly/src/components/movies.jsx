@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import LikeButton from "./like";
-import Pagination from "./pagination";
+import LikeButton from "./common/like";
+import Pagination from "./common/pagination";
 
 class Movies extends Component {
   state = {
@@ -65,7 +65,7 @@ class Movies extends Component {
       <React.Fragment>
         <h4>There are {this.state.newMovies.length} movies in the database</h4>
         <ul>{this.handleTable()}</ul>
-        <Pagination handleTable = {this.handleTable()} movies={this.state.newMovies} />
+        <Pagination handleTable={this.handleTable()} movies={this.state.newMovies} />
       </React.Fragment>
     );
   }
