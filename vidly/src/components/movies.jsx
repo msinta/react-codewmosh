@@ -65,7 +65,7 @@ class Movies extends Component {
       <React.Fragment>
         <h4>There are {this.state.newMovies.length} movies in the database</h4>
         <ul>{this.handleTable()}</ul>
-        <Pagination/>
+        <Pagination handleTable = {this.handleTable()} movies={this.state.newMovies} />
       </React.Fragment>
     );
   }
