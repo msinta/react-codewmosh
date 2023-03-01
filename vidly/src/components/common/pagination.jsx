@@ -1,36 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
+import _ from "lodash";
 
-class Pagination extends Component {
+const Pagination = props => {
+  const { itemsCount, pageSize, onPageChange, currentPage } = props;
+  const pageLength =  Math.ceil(itemsCount/ pageSize);
+  if (pageLength === 1) return null;
+  const pages = _.range(1, pageLength + 1);
 
-
-
-
-  handlePagination(){
-  const itemsPerPage = 4;
-  const pageLength = Math.ceil(this.props.movies.length/itemsPerPage)
-  let html = [];
-  for(let i = 1; i <= pageLength; i++)
-    html.push(
-        <a className="page-link" href="#">
-          {i}
-        </a>
-    );
-  return html;
-
-  }
-
-  render() {
-    return (
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-            {this.handlePagination().map((element, index) => (
-              <li key={index}>{element}</li>
-              ))
-              }
-            </ul>
-          </nav>
-    );
-  }
-}
+  return (
+    <nav>
+      <ul className="pagination">
+        {pages.map((element) => (
+          <li className={element === currentPage ? 'page-item active': 'page-item'} key={element}>
+            <a className="page-link" onClick={()=>onPageChange(element)}>
+              {element}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
 export default Pagination;
