@@ -6,8 +6,13 @@ import Pagination from "./common/pagination";
 class Movies extends Component {
   state = {
     newMovies: getMovies(),
+    pageSize: 4
   };
 
+  handlePageChange(){
+
+
+  }
   handleDelete = (movie) => {
     const movies = this.state.newMovies.filter((m) => m._id !== movie._id);
     this.setState({ newMovies: movies });
@@ -65,7 +70,7 @@ class Movies extends Component {
       <React.Fragment>
         <h4>There are {this.state.newMovies.length} movies in the database</h4>
         <ul>{this.handleTable()}</ul>
-        <Pagination handleTable={this.handleTable()} movies={this.state.newMovies} />
+        <Pagination handleTable={this.handleTable()} movies={this.state.newMovies} pageSize={this.state.pageSize} handlePageChange={this.handlePageChange} />
       </React.Fragment>
     );
   }
