@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import LikeButton from "./common/like";
 import Pagination from "./common/pagination";
+import { paginate } from '../utils/paginate';
 
 class Movies extends Component {
   state = {
@@ -27,9 +28,18 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   }
 
-  handleTable() {
+
+  render() {
+    const { pageSize, currentPage, newMovies: allMovies } = this.state;
+    if (this.state.newMovies.length === 0) return <p className="m-3"> There are no Movies in the database!</p>;
+
+    const newMovies = paginate(allMovies, currentPage, pageSize)
+
     return (
-      <table className="table m-3">
+      <React.Fragment>
+        <div className= "container">
+        <h4>There are {this.state.newMovies.length} movies in the database</h4>
+        <table className="table m-3">
         <thead>
           <tr>
             <th scope="col">Title</th>
@@ -41,7 +51,7 @@ class Movies extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.newMovies.map((movie) => (
+          {newMovies.map((movie) => (
             <tr key={movie._id}>
               <td>{movie.title}</td>
               <td>{movie.genre.name}</td>
@@ -64,19 +74,6 @@ class Movies extends Component {
           ))}
         </tbody>
       </table>
-    );
-  }
-
-  render() {
-    const { pageSize, currentPage } = this.state;
-    if (this.state.newMovies.length === 0)
-      return <p className="m-3"> There are no Movies in the database!</p>;
-
-    return (
-      <React.Fragment>
-        <div className= "container">
-        <h4>There are {this.state.newMovies.length} movies in the database</h4>
-        <ul>{this.handleTable()}</ul>
         <Pagination
           pageSize={pageSize}
           itemsCount={this.state.newMovies.length}
