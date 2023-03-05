@@ -23,10 +23,8 @@ class Movies extends Component {
 
   };
 
-  handleListChange = (page, movie) => {
-    const movies = this.state.newMovies.filter((m) => m.genre._id === movie.genre._id)
-    this.setState({ currentPage: page});
-    this.setState({ newMovies: movies})
+  handleListChange = (genre) => {
+    this.setState({ selectedGenre: genre})
   };
 
   handleDelete = (movie) => {
@@ -43,26 +41,30 @@ class Movies extends Component {
   }
 
   render() {
-    const { pageSize, currentPage, newMovies: allMovies, genres } = this.state;
+    const { pageSize, currentPage, newMovies: allMovies, genres, selectedGenre} = this.state;
     if (this.state.newMovies.length === 0)
       return <p className="m-3"> There are no Movies in the database!</p>;
 
-    const newMovies = paginate(allMovies, currentPage, pageSize);
+
+    const filtered = selectedGenre ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
+    : allMovies;
+
+    const newMovies = paginate(filtered, currentPage, pageSize);
 
     return (
 
 
         <div className="row ">
-          <div className="col-2">
+          <div className="col-3">
           <List
         getGenres={genres}
-        currentPage={currentPage}
-        onListChange={this.handleListChange}
+        selectedItem={this.state.selectedGenre}
+        onItemSelect={this.handleListChange}
         />
           </div>
           <div className="col">
           <p>
-            There are {this.state.newMovies.length} movies in the database
+            There are {filtered.length} movies in the database
           </p>
           <table className="table m-3">
             <thead>
@@ -102,7 +104,7 @@ class Movies extends Component {
           </table>
           <Pagination
             pageSize={pageSize}
-            itemsCount={this.state.newMovies.length}
+            itemsCount={filtered.length}
             onPageChange={this.handlePageChange}
             currentPage={currentPage}
           />
