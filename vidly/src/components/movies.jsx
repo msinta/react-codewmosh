@@ -56,7 +56,7 @@ class Movies extends Component {
               </td>
               <button
                 className="btn btn-danger btn-sm"
-                onClick={() => this.handleDelete(movie)}
+                onClick={() => this.handleDelete(movie)}Mukhammadusmon Ganiev
               >
                 Delete
               </button>
@@ -74,6 +74,7 @@ class Movies extends Component {
 
     return (
       <React.Fragment>
+        <div className= "container">
         <h4>There are {this.state.newMovies.length} movies in the database</h4>
         <ul>{this.handleTable()}</ul>
         <Pagination
@@ -82,6 +83,7 @@ class Movies extends Component {
           onPageChange={this.handlePageChange}
           currentPage={currentPage}
         />
+        </div>
       </React.Fragment>
     );
   }
