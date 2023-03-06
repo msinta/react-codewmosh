@@ -40,6 +40,13 @@ class Movies extends Component {
     movies[index].liked = !movies[index].liked;
     this.setState({ newMovies: movies });
   }
+  handleLike(movie) {
+    const movies = [...this.state.newMovies];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movies[index] };
+    movies[index].liked = !movies[index].liked;
+    this.setState({ newMovies: movies });
+  }
 
   render() {
     const { pageSize, currentPage, newMovies: allMovies, genres, selectedGenre} = this.state;
