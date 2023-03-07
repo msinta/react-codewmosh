@@ -3,16 +3,16 @@ import LikeButton from "./common/like";
 
 const MoviesTable = (props) => {
 
-  const {newMovies, handleDelete, handleLike} = props
+  const {newMovies, handleDelete, handleLike, onSort} = props
   return ( <table className="table m-3">
   <thead>
     <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Stock</th>
-      <th scope="col">Rate</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
+      <th onClick={() => onSort('title')} scope="col">Title</th>
+      <th onClick={() => onSort('genre.name')} scope="col">Genre</th>
+      <th onClick={() => onSort('numberInStock')} scope="col">Stock</th>
+      <th onClick={() => onSort('dailyRentalRate')} scope="col">Rate</th>
+      <th onClick={() => onSort('')} scope="col"></th>
+      <th onClick={() => onSort('')} scope="col"></th>
     </tr>
   </thead>
   <tbody>
