@@ -3,17 +3,30 @@ import LikeButton from "./common/like";
 
 class MoviesTable extends Component {
 
+  raiseSort = path => {
+
+    const sortColumn = {...this.props.sortColumn};
+    if (sortColumn.path === path)
+      sortColumn.order = (sortColumn.order === 'asc') ? 'desc': 'asc'
+    else {
+      sortColumn.path = path
+      sortColumn.order = 'asc'
+    }
+
+    this.props.onSort(sortColumn);
+
+  }
+
   render() {
-    const {newMovies, handleDelete, handleLike, onSort} = this.props
+    const {newMovies, handleDelete, handleLike} = this.props
     return ( <table className="table m-3">
     <thead>
       <tr>
-        <th onClick={() => onSort('title')} scope="col">Title</th>
-        <th onClick={() => onSort('genre.name')} scope="col">Genre</th>
-        <th onClick={() => onSort('numberInStock')} scope="col">Stock</th>
-        <th onClick={() => onSort('dailyRentalRate')} scope="col">Rate</th>
-        <th onClick={() => onSort('')} scope="col"></th>
-        <th onClick={() => onSort('')} scope="col"></th>
+        <th onClick={() => this.raiseSort('title')} scope="col">Title</th>
+        <th onClick={() => this.raiseSort('genre.name')} scope="col">Genre</th>
+        <th onClick={() => this.raiseSort('numberInStock')} scope="col">Stock</th>
+        <th onClick={() => this.raiseSort('dailyRentalRate')} scope="col">Rate</th>
+
       </tr>
     </thead>
     <tbody>
@@ -31,13 +44,6 @@ class MoviesTable extends Component {
             />
           </td>
           <button
-           <LikeButton
-           liked={movie.liked}
-           movie={movie}
-           handleLike={() => handleLike(movie)}
-         />
-       </td>
-       <button
             className="btn btn-danger btn-sm"
             onClick={() => handleDelete(movie)}
           >
