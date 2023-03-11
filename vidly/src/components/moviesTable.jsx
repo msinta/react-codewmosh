@@ -31,6 +31,13 @@ class MoviesTable extends Component {
             />
           </td>
           <button
+           <LikeButton
+           liked={movie.liked}
+           movie={movie}
+           handleLike={() => handleLike(movie)}
+         />
+       </td>
+       <button
             className="btn btn-danger btn-sm"
             onClick={() => handleDelete(movie)}
           >
