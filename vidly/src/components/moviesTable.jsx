@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import LikeButton from "./common/like";
+import TableBody from './common/tableBody';
 
 class MoviesTable extends Component {
 
@@ -29,6 +30,9 @@ class MoviesTable extends Component {
 
       </tr>
     </thead>
+    <TableBody
+    data={movies}
+    />
     <tbody>
       {newMovies.map((movie) => (
         <tr key={movie._id}>
