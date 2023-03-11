@@ -34,7 +34,7 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   };
 
-  handleLike(movie) {
+  handleLike = movie => {
     const movies = [...this.state.newMovies];
     const index = movies.indexOf(movie);
     movies[index] = { ...movies[index] };
