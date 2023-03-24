@@ -1,10 +1,13 @@
 import './App.css';
+import Movies from './components/movies';
+import NavBar from './components/navbar';
 
 
 function App() {
   return (
-    <main className="container">
-      <h2>Hello World </h2>
+    <main>
+      <NavBar />
+       <Movies />
     </main>
   );
 }
