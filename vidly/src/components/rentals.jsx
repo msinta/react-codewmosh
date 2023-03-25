@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-const RentalsLink = () => {
+const Rentals = () => {
   return (
     <h1>Rentals</h1>
   );
 }
 
-export default RentalsLink;
+export default Rentals;
