@@ -5,18 +5,20 @@ import RentalsLink from "./components/rentalslink";
 import CustomersLink from "./components/customerslink";
 import { Switch, Route, Redirect } from "react-router-dom";
 import NotFound from "./components/notFound";
+import MovieDetails from "./components/moviedetails";
 
 function App() {
   return (
     <div>
       <NavBar />
       <Switch>
-        <Route path='/' exact component={Movies}/>
-        <Route path='/movies'  component={Movies}/>
-        <Route path='/customers'  component={CustomersLink}/>
-        <Route path='/rentals'  component={RentalsLink}/>
-        <Route path='/not-found'  component={NotFound}/>
-        <Redirect to='not-found'/>
+        <Route path="/movies/:id" component={MovieDetails} />
+        <Route path="/" exact component={Movies} />
+        <Route path="/movies" component={Movies} />
+        <Route path="/customers" component={CustomersLink} />
+        <Route path="/rentals" component={RentalsLink} />
+        <Route path="/not-found" component={NotFound} />
+        <Redirect to="not-found" />
       </Switch>
     </div>
   );
