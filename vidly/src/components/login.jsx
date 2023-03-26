@@ -24,26 +24,10 @@ class LoginForm extends Form {
     return (
       <div className="container">
         <h1>Login</h1>
-        <form onSubmit={this.handleSubmit} action="">
-          <Input
-            name="username"
-            value={data.username}
-            label="Username"
-            onChange={this.handleChange}
-            error={errors.username}
-          />
-          <div className="form-group">
-            <Input
-              name="password"
-              value={data.password}
-              label="Password"
-              error={errors.password}
-              onChange={this.handleChange}
-            />
-          </div>
-          <button disabled={this.validate()} className="btn btn-primary">
-            Login
-          </button>
+        <form onSubmit={this.handleSubmit}>
+        {this.renderInput("username", "Username")}
+        {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
         </form>
       </div>
     );
