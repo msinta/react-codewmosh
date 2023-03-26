@@ -20,11 +20,13 @@ class LoginForm extends Form {
   }
 
   render() {
-    const { data, errors } = this.state;
+
+    const {onSubmit} = this.props
+
     return (
       <div className="container">
         <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={onSubmit}>
         {this.renderInput("username", "Username")}
         {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}

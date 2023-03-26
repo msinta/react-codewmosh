@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import NotFound from "./components/notFound";
 import MovieDetails from "./components/moviedetails";
 import LoginForm from "./components/login";
+import RegisterForm from "./components/register";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/rentals" component={Rentals} />
         <Route path="/not-found" component={NotFound} />
         <Route path='/login' component={LoginForm}/>
+        <Route path='/register' component={RegisterForm}/>
         <Redirect from="/" exact to='/movies' />
         <Redirect to="not-found" />
       </Switch>
