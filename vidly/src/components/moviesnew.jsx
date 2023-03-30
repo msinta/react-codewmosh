@@ -3,29 +3,32 @@ import Form from "./common/form";
 import Joi from "joi-browser";
 
 class newMovie extends Form {
- state = {
-   data: { Title: "", Genre: "", Number_in_stock: "" , Rate:""},
-   errors: {},
- };
+  state = {
+    data: { title: "", genre: "", number_in_stock: null, rate: null },
+    errors: {},
+  };
 
- schema = {
-   Title: Joi.string().required().label("Title"),
-   Genre: Joi.string().min(5).required().label("Genre"),
-   Number_in_stock: Joi.string().required().label("Number in stock"),
-   Rate: Joi.string().required().label("Name"),
- };
+  schema = {
+    title: Joi.string().required().label("Title"),
+    genre: Joi.string().required().label("Genre"),
+    number_in_stock: Joi.number().min(0).required().label("Number in stock"),
+    rate: Joi.number().min(0).max(10).required().label("Rate"),
+  };
 
   render() {
     return (
       <div className="container">
-        <h1>Register</h1>
+        <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
-          {this.renderInput("genre", "Genre",)}
-          {this.renderInput("number in stock", "Number in stock")}
+          {this.renderSelect("genre", "Genre", [
+            { label: "Comedy", value: "comedy" },
+            { label: "Romance", value: "romance" },
+            { label: "Thriller", value: "thriller" },
+          ])}
+          {this.renderInput("number_in_stock", "Number in stock")}
           {this.renderInput("rate", "Rate")}
           {this.renderButton("Submit")}
-
         </form>
       </div>
     );
