@@ -6,6 +6,7 @@ import { paginate } from "../utils/paginate";
 import List from "./common/list";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -32,6 +33,10 @@ class Movies extends Component {
   handleDelete = (movie) => {
     const movies = this.state.newMovies.filter((m) => m._id !== movie._id);
     this.setState({ newMovies: movies });
+  };
+
+  handleNew = () => {
+
   };
 
   handleLike = movie => {
@@ -81,7 +86,9 @@ class Movies extends Component {
     const {totalCount, data: newMovies} = this.getPageData();
 
     return (
+
       <div className="container m-3">
+
         <div className="row">
           <div className="col-3">
             <List
@@ -90,8 +97,11 @@ class Movies extends Component {
               onItemSelect={this.handleListChange}
             />
           </div>
+
           <div className="col">
+          <Link to='/movies/new/' className="btn btn-primary m-2">New Movie</Link>
             <p>There are {totalCount} movies in the database</p>
+
             <MoviesTable
               newMovies={newMovies}
               sortColumn={sortColumn}
