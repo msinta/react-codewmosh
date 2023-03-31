@@ -37,7 +37,7 @@ class MovieDetails extends Form {
           ])}
           {this.renderInput("number_in_stock", "Number in stock")}
           {this.renderInput("rate", "Rate")}
-          <button className="btn btn-primary" onClick={console.log(this.props.match.params)}>
+          <button className="btn btn-primary" onClick={console.log(this.props.match)}>
             Save
           </button>
 

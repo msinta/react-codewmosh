@@ -4,14 +4,14 @@ import Joi from "joi-browser";
 
 class newMovie extends Form {
   state = {
-    data: { title: movie => `${movie.title}`, genre: "", number_in_stock: null, rate: null },
+    data: { title: "", genre: "", number_in_stock: null, rate: null },
     errors: {},
   };
 
   schema = {
     title: Joi.string().required().label("Title"),
     genre: Joi.string().required().label("Genre"),
-    number_in_stock: Joi.number().min(0).required().label("Number in stock"),
+    number_in_stock: Joi.number().min(0).max(100).required().label("Number in stock"),
     rate: Joi.number().min(0).max(10).required().label("Rate"),
   };
 
