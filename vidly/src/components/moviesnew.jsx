@@ -4,7 +4,7 @@ import Joi from "joi-browser";
 
 class newMovie extends Form {
   state = {
-    data: { title: "", genre: "", number_in_stock: null, rate: null },
+    data: { title: movie => `${movie.title}`, genre: "", number_in_stock: null, rate: null },
     errors: {},
   };
 
@@ -15,11 +15,15 @@ class newMovie extends Form {
     rate: Joi.number().min(0).max(10).required().label("Rate"),
   };
 
+  doSubmit = (movie) => {
+    console.log(movie)
+  }
+
   render() {
     return (
       <div className="container">
         <h1>Movie Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.doSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genre", "Genre", [
             { label: "Comedy", value: "comedy" },

@@ -35,8 +35,9 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   };
 
-  handleNew = () => {
-
+  handleNew = movie => {
+    const movies = [...this.state.newMovies, movie];
+    this.setState({ newMovies: movies });
   };
 
   handleLike = movie => {
