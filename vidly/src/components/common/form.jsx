@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import  Joi  from 'joi-browser';
 import Input from './input';
+import { saveMovie } from '../../services/fakeMovieService';
+
 
 class Form extends Component {
     state = {
@@ -28,12 +30,18 @@ class Form extends Component {
 
     handleSubmit = e => {
       e.preventDefault();
-
       const errors = this.validate();
       this.setState({ errors: errors || {} });
       if (errors) return;
 
-      this.doSubmit();
+      let movie = {
+        title: e.target[0].value,
+        genreId: e.target[1].value,
+        numberInStock: e.target[2].value,
+        dailyRentalRate:e.target[3].value,
+      }
+      saveMovie(movie)
+      console.log(movie)
 
     };
 

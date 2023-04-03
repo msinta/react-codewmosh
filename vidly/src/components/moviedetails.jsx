@@ -1,12 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-
+import { getMovie, saveMovie } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
 
 class MovieDetails extends Form {
   state = {
-    data: { title: "", genre: "", number_in_stock: null, rate: null },
+    data: {
+      title: `${getMovie(this.props.match.params.id).title}`,
+      genre: `${getMovie(this.props.match.params.id).genre}`,
+      number_in_stock: `${getMovie(this.props.match.params.id).numberInStock}`,
+      rate: `${getMovie(this.props.match.params.id).dailyRentalRate} `,
+    },
     errors: {},
+    genres: [],
   };
 
   handleId = () => {
@@ -23,23 +30,23 @@ class MovieDetails extends Form {
   doSubmit = (movie) => {
     console.log(movie);
   };
+
+
   render() {
     return (
       <div className="container">
-        <h1>Movie Form - {this.props.match.params.id}</h1>
+        <h1>Movie Form </h1>
 
-        <form onSubmit={this.doSubmit}>
+        <form onSubmit={this.handleChange}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genre", "Genre", [
-            { label: "Comedy", value: "comedy" },
-            { label: "Romance", value: "romance" },
-            { label: "Thriller", value: "thriller" },
+            { label: "Comedy", value: "Comedy" },
+            { label: "Action", value: "Action" },
+            { label: "Thriller", value: "Thriller" },
           ])}
           {this.renderInput("number_in_stock", "Number in stock")}
           {this.renderInput("rate", "Rate")}
-          <button className="btn btn-primary" onClick={console.log(this.props.match)}>
-            Save
-          </button>
+          {this.renderButton("Save")}
 
         </form>
       </div>

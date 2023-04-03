@@ -15,20 +15,18 @@ class newMovie extends Form {
     rate: Joi.number().min(0).max(10).required().label("Rate"),
   };
 
-  doSubmit = (movie) => {
-    console.log(movie)
-  }
+
 
   render() {
     return (
       <div className="container">
         <h1>Movie Form</h1>
-        <form onSubmit={this.doSubmit}>
+        <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genre", "Genre", [
-            { label: "Comedy", value: "comedy" },
-            { label: "Romance", value: "romance" },
-            { label: "Thriller", value: "thriller" },
+            { label: "Comedy", value: "Comedy" },
+            { label: "Action", value: "Action" },
+            { label: "Thriller", value: "Thriller" },
           ])}
           {this.renderInput("number_in_stock", "Number in stock")}
           {this.renderInput("rate", "Rate")}
