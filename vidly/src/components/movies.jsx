@@ -35,25 +35,24 @@ class Movies extends Component {
     this.setState({ newMovies: movies });
   };
 
-  handleNew = movie => {
+  handleNew = (movie) => {
     const movies = [...this.state.newMovies, movie];
     this.setState({ newMovies: movies });
   };
 
-  handleLike = movie => {
+  handleLike = (movie) => {
     const movies = [...this.state.newMovies];
     const index = movies.indexOf(movie);
     movies[index] = { ...movies[index] };
     movies[index].liked = !movies[index].liked;
     this.setState({ newMovies: movies });
-  }
+  };
 
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
 
   getPageData = () => {
-
     const {
       pageSize,
       currentPage,
@@ -69,27 +68,19 @@ class Movies extends Component {
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const newMovies = paginate(sorted, currentPage, pageSize);
 
-    return { totalCount : filtered.length, data: newMovies };
+    return { totalCount: filtered.length, data: newMovies };
   };
 
   render() {
-
-    const {
-      pageSize,
-      currentPage,
-      genres,
-      sortColumn,
-    } = this.state;
+    const { pageSize, currentPage, genres, sortColumn } = this.state;
 
     if (this.state.newMovies.length === 0)
       return <p className="m-3"> There are no Movies in the database!</p>;
 
-    const {totalCount, data: newMovies} = this.getPageData();
+    const { totalCount, data: newMovies } = this.getPageData();
 
     return (
-
       <div className="container m-3">
-
         <div className="row">
           <div className="col-3">
             <List
@@ -100,7 +91,9 @@ class Movies extends Component {
           </div>
 
           <div className="col">
-          <Link to='/movies/new/' className="btn btn-primary m-2">New Movie</Link>
+            <Link to="/movies/new" className="btn btn-primary m-2">
+              New Movie
+            </Link>
             <p>There are {totalCount} movies in the database</p>
 
             <MoviesTable

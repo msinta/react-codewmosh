@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import  Joi  from 'joi-browser';
 import Input from './input';
-import { saveMovie } from '../../services/fakeMovieService';
+import Select from './select'
 
 
 class Form extends Component {
@@ -9,8 +9,6 @@ class Form extends Component {
         data: { },
         errors: {},
     }
-
-
     validateProperty = ({ name, value }) => {
       const obj = { [name]: value };
       const schema = { [name]: this.schema[name] };
@@ -33,16 +31,7 @@ class Form extends Component {
       const errors = this.validate();
       this.setState({ errors: errors || {} });
       if (errors) return;
-
-      let movie = {
-        title: e.target[0].value,
-        genreId: e.target[1].value,
-        numberInStock: e.target[2].value,
-        dailyRentalRate:e.target[3].value,
-      }
-      saveMovie(movie)
-      console.log(movie)
-
+      this.doSubmit();
     };
 
 
@@ -89,23 +78,14 @@ class Form extends Component {
         const { data, errors } = this.state;
 
         return (
-          <div className="form-group">
-            <label htmlFor={name}>{label}</label>
-            <select
+          <Select
               name={name}
-              id={name}
               value={data[name]}
+              options={options}
               onChange={this.handleChange}
-              className="form-control"
-            >
-              {options.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            {errors[name] && <div className="alert alert-danger">{errors[name]}</div>}
-          </div>
+              error={errors[name]}
+              label={label}
+            />
         );
       }
   }
