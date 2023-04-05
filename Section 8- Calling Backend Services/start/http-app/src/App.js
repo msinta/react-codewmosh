@@ -1,20 +1,35 @@
 import React, { Component } from "react";
 import "./App.css";
+import axios from "axios";
 
+const apiEndpoint = "https://jsonplaceholder.typicode.com/posts"
 class App extends Component {
   state = {
-    posts: []
+    posts: [],
+
   };
 
-  handleAdd = () => {
-    console.log("Add");
+  async componentDidMount() {
+    //pending > resolved (success) or rejected (failure)
+    const { data: posts } = await axios.get(apiEndpoint)
+
+    this.setState({ posts });
+  }
+
+  handleAdd = async () => {
+    const obj = { title: "a", body: "b" };
+    const {data: post} = await axios.post(apiEndpoint, obj);
+
+    const posts = [post, ...this.state.posts];
+    this.setState({posts})
+
   };
 
-  handleUpdate = post => {
+  handleUpdate = (post) => {
     console.log("Update", post);
   };
 
-  handleDelete = post => {
+  handleDelete = (post) => {
     console.log("Delete", post);
   };
 
@@ -33,7 +48,7 @@ class App extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.posts.map(post => (
+            {this.state.posts.map((post) => (
               <tr key={post.id}>
                 <td>{post.title}</td>
                 <td>
