@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
+import { getMovies } from "../services/movieService";
 import { getGenres } from "../services/genreService";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
@@ -24,7 +24,9 @@ class Movies extends Component {
   async componentDidMount() {
     const { data } = await getGenres();
     let genres = [{ _id: "", name: "All Genres" }, ...data];
-    this.setState({ genres, newMovies: getMovies(), });
+
+    const { data: newMovies } = await getMovies();
+    this.setState({ genres, newMovies });
   }
 
   handlePageChange = (page) => {
