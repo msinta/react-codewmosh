@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
+import { getGenres } from "../services/genreService";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
 import List from "./common/list";
@@ -9,10 +9,11 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 import SearchBox from "./common/searchbox";
 
+
 class Movies extends Component {
   state = {
-    genres: getGenres(),
-    newMovies: getMovies(),
+    genres:[],
+    newMovies: [],
     pageSize: 4,
     currentPage: 1,
     sortColumn: { path: "title", order: "asc" },
@@ -20,9 +21,10 @@ class Movies extends Component {
     selectedGenre: null
   };
 
-  componentDidMount() {
-    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
-    this.setState({ newMovies: getMovies(), genres });
+  async componentDidMount() {
+    const { data } = await getGenres();
+    let genres = [{ _id: "", name: "All Genres" }, ...data];
+    this.setState({ genres, newMovies: getMovies(), });
   }
 
   handlePageChange = (page) => {
@@ -99,7 +101,7 @@ class Movies extends Component {
         <div className="row">
           <div className="col-3">
             <List
-              getGenres={genres}
+              items={this.state.genres}
               selectedItem={this.state.selectedGenre}
               onItemSelect={this.handleListChange}
             />

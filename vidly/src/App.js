@@ -8,10 +8,13 @@ import LoginForm from "./components/login";
 import RegisterForm from "./components/register";
 import "./App.css";
 import MovieForm from "./components/moviesform";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div>
+      <ToastContainer/>
       <NavBar />
       <Switch>
         <Route path="/movies/:id" component={MovieForm} />
