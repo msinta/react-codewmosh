@@ -10,6 +10,7 @@ import "./App.css";
 import MovieForm from "./components/moviesform";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import Logout from "./components/logout";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/rentals" component={Rentals} />
         <Route path="/not-found" component={NotFound} />
         <Route path='/login' component={LoginForm}/>
+        <Route path='/logout' component={Logout}/>
         <Route path='/register' component={RegisterForm}/>
         <Redirect from="/" exact to='/movies' />
         <Redirect to="not-found" />
