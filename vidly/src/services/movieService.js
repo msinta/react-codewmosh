@@ -15,9 +15,6 @@ export function getMovie(movieId) {
   return http.get(movieUrl(movieId));
 }
 
-export function getMovie(movieId) {
-  return http.get(movieUrl(movieId));
-}
 
 export function saveMovie(movie) {
   if (movie._id) {
