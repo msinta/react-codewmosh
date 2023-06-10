@@ -22,6 +22,7 @@ function App() {
         <Route path="/movies" component={Movies} />
         <Route path="/customers" component={Customers} />
         <Route path="/rentals" component={Rentals} />
+        <Route path="/rentals/:id" component={Rentals} />
         <Route path="/not-found" component={NotFound} />
         <Route path='/login' component={LoginForm}/>
         <Route path='/logout' component={Logout}/>
